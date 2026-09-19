@@ -1,6 +1,7 @@
 import './App.css'
 
 import { useEffect, useState } from 'react'
+import { calculate, formatNumber } from './calculator.js'
 
 const buttons = [
   { label: 'AC', value: 'clear', kind: 'utility' },
@@ -23,22 +24,6 @@ const buttons = [
   { label: '.', value: '.' },
   { label: '=', value: 'equals', kind: 'equals' },
 ]
-
-function formatNumber(value) {
-  if (!Number.isFinite(value)) return 'Error'
-  return String(Number(value.toFixed(10)))
-}
-
-function calculate(left, operator, right) {
-  const first = Number(left)
-  const second = Number(right)
-
-  if (operator === '+') return first + second
-  if (operator === '-') return first - second
-  if (operator === '*') return first * second
-  if (operator === '/') return second === 0 ? Number.NaN : first / second
-  return second
-}
 
 function App() {
   const [display, setDisplay] = useState('0')
